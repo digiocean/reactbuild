@@ -1,5 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
+var path = require('path')
+var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var Dashboard = require('webpack-dashboard')
+var DashboardPlugin = require('webpack-dashboard/plugin')
+var dashboard = new Dashboard()
 
 module.exports = {
     entry: [
@@ -29,6 +33,7 @@ module.exports = {
     devServer: {
         port:8888,
         hot: true,
+        quiet:true,
         historyApiFallback:true,
         contentBase: path.resolve(__dirname, 'dist'),
 
@@ -44,11 +49,9 @@ module.exports = {
             exclude: /node_modules/
         }, {
             test: /\.css$/,
-            use: [
-                'style-loader',
-                'css-loader?modules',
-                'postcss-loader?sourceMap=inline'
-            ]
+            use: ExtractTextPlugin.extract(
+                [ 'css-loader?modules', 'postcss-loader' ]
+            )
         }, ]
     },
     plugins: [
@@ -58,6 +61,12 @@ module.exports = {
 
         // 当模块热替换(HMR)时在浏览器控制台输出对用户更友好的模块名字信息
         new webpack.NamedModulesPlugin(),
+
+        // 单独打包css
+        new ExtractTextPlugin("bundle.css"),
+
+        // webpack可视化
+        new DashboardPlugin(dashboard.setData)
 
     ],
 }

@@ -1,0 +1,11 @@
+.tips {
+    background-color: #ddd;
+    color: #000;
+    border: 1px solid #ddd;
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
