@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/**
+ * @ Module name
+ * @ authors: H.yingzi - h.yingzi@gmail.com
+ * @ team: Digiocean - http://www.digiocean.cc
+ * @ date:
+ * @ version: 0.0.0
+ *
+ */
+/*
+    TODO:
+*/
+
+
+body{
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.main{
+    color: #ddd;
+    text-size-adjust: none;
+    font-family: helvetica, arial, sans-serif;
+    line-height: 200%;
+    padding: 6px 20px 30px;
+}
+.a{
+    
+}
