@@ -1,0 +1,12 @@
+.userlist{
+    padding: 2px;
+    box-sizing: border-box;
+    text-size-adjust: none;
+}
+.userlist ul li{
+    display: block;
+    padding: 10px 0 10px 10px;
+}
+.userlist ul li a{
+    color: green;
+}

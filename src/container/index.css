@@ -1,0 +1,84 @@
+@charset "UTF-8";
+/**
+ * @ Module name
+ * @ authors: H.yingzi - h.yingzi@gmail.com
+ * @ team: Digiocean - http://www.digiocean.cc
+ * @ date:
+ * @ version: 0.0.0
+ *
+ */
+*{
+    padding:0;
+    margin: 0;
+}
+body{
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.main{
+    color: #ddd;
+    text-size-adjust: none;
+    font-family: helvetica, arial, sans-serif;
+    line-height: 200%;
+    padding: 6px 20px 30px;
+}
+.container{
+    padding: 0;
+}
+.menu{
+    padding:0 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.menu ul li{
+    display: inline-block;
+    font-size: 14px;
+    margin: 0 10px;
+}
+.menu ul li a{
+    display: inline-block;
+    color: #888;
+    padding: 20px 10px;
+    text-decoration: none;
+}
+.menu ul li a:global(.active){
+    color: #000;
+    font-weight: 700;
+    border-bottom: 3px solid #000;
+}
+.wrapper{
+    padding-top: 20px;
+    padding-left: 40px;
+    color: #000;
+}
+.routerslide{
+    position: absolute;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: 40px;
+    padding-left: 40px;
+    background-color: #fff;
+}
+h2{
+    margin-bottom: 20px;
+}
+:global(.fade-enter) {
+  opacity: 0;
+  transform: translate3d(100%,0,0);
+}
+:global(.fade-leave) {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
+
+:global(.fade-enter.fade-enter-active) {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+  transition: all 200ms ease-in;
+}
+
+:global(.fade-leave.fade-leave-active) {
+  opacity: 0;
+  transition: all 200ms ease-out;
+}

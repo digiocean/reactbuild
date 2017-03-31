@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var Dashboard = require('webpack-dashboard')
 var DashboardPlugin = require('webpack-dashboard/plugin')
@@ -26,15 +27,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
 
         // 对于热替换(HMR)是必须的，让 webpack 知道在哪里载入热更新的模块(chunk)
-        publicPath: '/'
+        publicPath: '/',
+        chunkFilename: "[name].[chunkhash:6].js"
     },
     context: path.resolve(__dirname, 'src'),
-    devtool: 'inline-source-map',
+    // devtool: 'inline-source-map',
     devServer: {
-        port:8888,
+        port: 8888,
         hot: true,
-        quiet:true,
-        historyApiFallback:true,
+        quiet: true,
+        historyApiFallback: true,
         contentBase: path.resolve(__dirname, 'dist'),
 
         // 和上文 output 的“publicPath”值保持一致
@@ -49,13 +51,34 @@ module.exports = {
             exclude: /node_modules/
         }, {
             test: /\.css$/,
-            use: ExtractTextPlugin.extract(
-                [ 'css-loader?modules', 'postcss-loader' ]
-            )
-        }, ]
+            use: ExtractTextPlugin.extract({
+                // 懒加载组件用到
+                fallback: "style-loader",
+                use: [{
+                    loader: "css-loader",
+                    options: {
+                        modules: true,
+                        minimize:true,
+                        importLoaders: true,
+                        localIdentName: "[name]-[local]-[hash:base64:6]"
+                    }
+                }, {
+                    loader: "postcss-loader",
+                    options: {
+                        plugins: function() {
+                            return [
+                                require("autoprefixer")
+                            ]
+                        }
+                    }
+                }]
+            })
+        }]
     },
     plugins: [
-
+        new HtmlWebpackPlugin({
+            template: "./index.html"
+        }),
         // 开启全局的模块热替换(HMR)
         new webpack.HotModuleReplacementPlugin(),
 
