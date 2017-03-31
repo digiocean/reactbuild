@@ -7,7 +7,7 @@ var HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin')
 module.exports = {
     entry: {
         bundle: "./build.js",
-        vendor: ["react", "react-dom"]
+        vendor: ["react", "react-dom","react-router","react-router-dom"]
     },
     output: {
         filename: "[name].[chunkhash:6].js",
